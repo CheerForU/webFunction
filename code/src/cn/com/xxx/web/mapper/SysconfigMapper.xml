@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.xxx.web.mapper.SysconfigMapper">
+
+    <resultMap type="cn.com.xxx.web.pojo.Sysconfig" id="sysconfigMap">
+        <result column="id" property="id" />
+        <result column="s_key" property="s_key" />
+        <result column="s_value" property="s_value" />
+    </resultMap>
+    
+    <select id="getSysconfig"  resultMap="sysconfigMap">
+        SELECT id,`s_key`,`s_value`
+        FROM tbl_sysconfig
+        WHERE s_key = #{s_key}
+    </select>
+    
+    <select id="getTrapConfig"  resultMap="sysconfigMap">
+        SELECT id,`s_key`,`s_value`
+        FROM tbl_sysconfig
+        WHERE s_key IN
+        ('snmp_enable','snmp_host','snmp_port','snmp_charset','snmp_protocol','snmp_type','snmp_community','snmp_sec_level','snmp_username','snmp_digest','snmp_password','snmp_encrypt','snmp_priv','snmp_context')
+    </select>
+
+    <select id="getMonitorConfig"  resultMap="sysconfigMap">
+        SELECT id,`s_key`,`s_value`
+        FROM tbl_sysconfig
+        WHERE s_key IN
+        ('snmp_monitor_enable','snmp_source','snmp_v1','snmp_v1_community','snmp_v2c','snmp_v2c_community','snmp_v3','snmp_v3_sec_level','snmp_v3_username','snmp_v3_digest','snmp_v3_password','snmp_v3_encrypt','snmp_v3_priv','snmp_v3_context')
+    </select>
+
+    <select id="getSysLogConfig"  resultMap="sysconfigMap">
+        SELECT id,`s_key`,`s_value`
+        FROM tbl_sysconfig
+        WHERE s_key IN
+        ('syslog_enable','syslog_protocol','syslog_host','syslog_port','syslog_charset')
+    </select>
+
+</mapper>
